@@ -13,7 +13,7 @@ console.log('inventory:', inventory);
 console.log('\n--- Object.keys() ---------------------------------------')
 const names = Object.keys(inventory);
 names
-  .sort((a, b) => a.localeCompare(b, "sv", { sensitivity: 'case' }))
+  //.sort((a, b) => a.localeCompare(b, "sv", { sensitivity: 'case' }))
   .forEach(name => console.log(name));
 
 console.log('\n--- for ... in ---------------------------------------')
@@ -22,6 +22,10 @@ for (const name in inventory) {
 }
 /**
  * Reflection question 2
+ * 
+ * The Object.keys function only visits own properties when iterating, but not inherited properties.
+ * However, the for...in... function also visits inherited properties. The two would thus create 
+ * different outputs if there were inherited name properties.
  */
 
 console.log('\n--- Assignment 1 ---------------------------------------')

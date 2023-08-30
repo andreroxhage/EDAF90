@@ -13,8 +13,6 @@ const inventory = {
 	'Pulled beef från Sverige': {price: 15, protein: true},
 	'Marinerad bönmix': {price: 10, protein: true, vegan: true},
 
-	// First commit LOL
-
 	Avocado: {price: 10, extra: true, vegan: true},
 	Bacon: {price: 10, extra: true},
 	'Böngroddar': {price: 5, extra: true, vegan: true},

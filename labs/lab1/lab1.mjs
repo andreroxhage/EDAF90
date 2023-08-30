@@ -1,8 +1,10 @@
 'use strict';
 /**
  * Reflection question 1
- * your answer goes here
- */
+ * It's not necessary because returning non existent properties will result in 'undefined' which is falsy.
+ * 
+ * In contrary, when using Java returning a non existent property will cause an error, NullPointerException
+ *  */
 
 import inventory from './inventory.mjs';
 console.log('\n=== beginning of printout ================================')

@@ -2,45 +2,51 @@
 /**
  * Reflection question 1
  * It's not necessary because returning non existent properties will result in 'undefined' which is falsy.
- * 
+ *
  * In contrary, when using Java returning a non existent property will cause an error, NullPointerException
  *  */
 
 import inventory from './inventory.mjs';
-console.log('\n=== beginning of printout ================================')
+console.log('\n=== beginning of printout ================================');
 console.log('inventory:', inventory);
 
-console.log('\n--- Object.keys() ---------------------------------------')
+console.log('\n--- Object.keys() ---------------------------------------');
 const names = Object.keys(inventory);
 names
-  //.sort((a, b) => a.localeCompare(b, "sv", { sensitivity: 'case' }))
-  .forEach(name => console.log(name));
+	.sort((a, b) => a.localeCompare(b, 'sv', {sensitivity: 'case'}))
+	.forEach((name) => console.log(name));
 
-console.log('\n--- for ... in ---------------------------------------')
+console.log('\n--- for ... in ---------------------------------------');
 for (const name in inventory) {
-  console.log(name);
+	console.log(name);
 }
 /**
  * Reflection question 2
- * 
+ *
  * The Object.keys function only visits own properties when iterating, but not inherited properties.
- * However, the for...in... function also visits inherited properties. The two would thus create 
+ * However, the for...in... function also visits inherited properties. The two would thus create
  * different outputs if there were inherited name properties.
  */
 
-console.log('\n--- Assignment 1 ---------------------------------------')
+console.log('\n--- Assignment 1 ---------------------------------------');
 
 function makeOptions(inv, prop) {
-  return 'TODO';
+	return Object.keys(inv) // array of ingredients using the keys from inv
+		.filter((item) => inv[item][prop]) // filter based on specified property
+		.map((item) => {
+			const {price} = inv[item];
+			return `<option value="${item}" key="${item}" >${item}, ${price}kr</option>`;
+		})
+		.reduce((options, option) => option + '\n' + options, '');
 }
 
 console.log(makeOptions(inventory, 'foundation'));
 
-console.log('\n--- Assignment 2 ---------------------------------------')
+console.log('\n--- Assignment 2 ---------------------------------------');
 class Salad {
-  constructor() { }
-  add(name, properties) { }
-  remove(name) { }
+	constructor() {}
+	add(name, properties) {}
+	remove(name) {}
 }
 /*
 let myCaesarSalad = new Salad()
@@ -55,7 +61,7 @@ console.log(JSON.stringify(myCaesarSalad) + '\n');
 myCaesarSalad.remove('Gurka');
 console.log(JSON.stringify(myCaesarSalad) + '\n');
 */
-console.log('\n--- Assignment 3 ---------------------------------------')
+console.log('\n--- Assignment 3 ---------------------------------------');
 //console.log('En ceasarsallad kostar ' + myCaesarSalad.getPrice() + 'kr');
 // En ceasarsallad kostar 45kr
 //console.log('En ceasarsallad har ' + myCaesarSalad.count('lactose') + ' ingredienser med laktos');
@@ -74,7 +80,7 @@ console.log('check 1: ' + (Salad.prototype === Object.getPrototypeOf(Salad)));
 console.log('check 2: ' + (Salad.prototype === Object.getPrototypeOf(myCaesarSalad)));
 console.log('check 3: ' + (Object.prototype === Object.getPrototypeOf(Salad.prototype)));
 */
-console.log('\n--- Assignment 4 ---------------------------------------')
+console.log('\n--- Assignment 4 ---------------------------------------');
 /*
 const singleText = JSON.stringify(myCaesarSalad);
 const arrayText = JSON.stringify([myCaesarSalad, myCaesarSalad]);
@@ -92,7 +98,7 @@ singleCopy.add('Gurka', inventory['Gurka']);
 console.log('originalet kostar ' + myCaesarSalad.getPrice() + ' kr');
 console.log('kopian med gurka kostar ' + singleCopy.getPrice() + ' kr');
 */
-console.log('\n--- Assignment 5 ---------------------------------------')
+console.log('\n--- Assignment 5 ---------------------------------------');
 /*
 let myGourmetSalad = new GourmetSalad()
   .add('Sallad', inventory['Sallad'], 0.5)
@@ -105,7 +111,7 @@ console.log('Min gourmetsallad med lite bacon kostar ' + myGourmetSalad.getPrice
 myGourmetSalad.add('Bacon', inventory['Bacon'], 1)
 console.log('Med extra bacon kostar den ' + myGourmetSalad.getPrice() + ' kr');
 */
-console.log('\n--- Assignment 6 ---------------------------------------')
+console.log('\n--- Assignment 6 ---------------------------------------');
 /*
 console.log('Min gourmetsallad har id: ' + myGourmetSalad.id);
 console.log('Min gourmetsallad har uuid: ' + myGourmetSalad.uuid);

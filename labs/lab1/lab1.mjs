@@ -48,9 +48,13 @@ class Salad {
 		this.ingredients = {};
 	}
 	add(name, properties) {
-		this.ingredients.add(name, properties);
+		this.ingredients[name] = properties;
+		return this;
 	}
-	remove(name) {}
+	remove(name) {
+		delete this.ingredients[name];
+		return this;
+	}
 }
 let myCaesarSalad = new Salad()
 	.add('Sallad', inventory['Sallad'])
@@ -65,11 +69,17 @@ myCaesarSalad.remove('Gurka');
 console.log(JSON.stringify(myCaesarSalad) + '\n');
 
 console.log('\n--- Assignment 3 ---------------------------------------');
-//console.log('En ceasarsallad kostar ' + myCaesarSalad.getPrice() + 'kr');
+console.log('En ceasarsallad kostar ' + myCaesarSalad.getPrice() + 'kr');
 // En ceasarsallad kostar 45kr
-//console.log('En ceasarsallad har ' + myCaesarSalad.count('lactose') + ' ingredienser med laktos');
+console.log(
+	'En ceasarsallad har ' +
+		myCaesarSalad.count('lactose') +
+		' ingredienser med laktos'
+);
 // En ceasarsallad har 2 ingredienser med laktos
-//console.log('En ceasarsallad har ' + myCaesarSalad.count('extra') + ' tillbehör');
+console.log(
+	'En ceasarsallad har ' + myCaesarSalad.count('extra') + ' tillbehör'
+);
 // En ceasarsallad har 3 tillbehör
 
 /*

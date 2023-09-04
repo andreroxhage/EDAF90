@@ -44,8 +44,12 @@ console.log(makeOptions(inventory, 'foundation'));
 
 console.log('\n--- Assignment 2 ---------------------------------------');
 class Salad {
-	constructor() {}
-	add(name, properties) {}
+	constructor() {
+		this.ingredients = {};
+	}
+	add(name, properties) {
+		this.ingredients.add(name, properties);
+	}
 	remove(name) {}
 }
 let myCaesarSalad = new Salad()

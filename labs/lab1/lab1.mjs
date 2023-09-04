@@ -48,19 +48,18 @@ class Salad {
 	add(name, properties) {}
 	remove(name) {}
 }
-/*
 let myCaesarSalad = new Salad()
-  .add('Sallad', inventory['Sallad'])
-  .add('Kycklingfilé', inventory['Kycklingfilé'])
-  .add('Bacon', inventory['Bacon'])
-  .add('Krutonger', inventory['Krutonger'])
-  .add('Parmesan', inventory['Parmesan'])
-  .add('Ceasardressing', inventory['Ceasardressing'])
-  .add('Gurka', inventory['Gurka']);
+	.add('Sallad', inventory['Sallad'])
+	.add('Kycklingfilé', inventory['Kycklingfilé'])
+	.add('Bacon', inventory['Bacon'])
+	.add('Krutonger', inventory['Krutonger'])
+	.add('Parmesan', inventory['Parmesan'])
+	.add('Ceasardressing', inventory['Ceasardressing'])
+	.add('Gurka', inventory['Gurka']);
 console.log(JSON.stringify(myCaesarSalad) + '\n');
 myCaesarSalad.remove('Gurka');
 console.log(JSON.stringify(myCaesarSalad) + '\n');
-*/
+
 console.log('\n--- Assignment 3 ---------------------------------------');
 //console.log('En ceasarsallad kostar ' + myCaesarSalad.getPrice() + 'kr');
 // En ceasarsallad kostar 45kr

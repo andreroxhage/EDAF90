@@ -44,8 +44,12 @@ console.log(makeOptions(inventory, 'foundation'));
 
 console.log('\n--- Assignment 2 ---------------------------------------');
 class Salad {
-	constructor() {
-		this.ingredients = {};
+	constructor(arg) {
+		if (arg !== undefined) {
+			this.ingredients = {...arg.ingredients};
+		} else {
+			this.ingredients = {};
+		}
 	}
 	add(name, properties) {
 		this.ingredients[name] = properties;
@@ -54,6 +58,17 @@ class Salad {
 	remove(name) {
 		delete this.ingredients[name];
 		return this;
+	}
+	static parse(jasonDerulo) {
+		if (Array.isArray(JSON.parse(jasonDerulo))) {
+			const saladsArray = JSON.parse(jasonDerulo);
+			return saladsArray.map((saladData) => new Salad(saladData));
+		}
+		if (typeof jasonDerulo === 'string') {
+			return new Salad(JSON.parse(jasonDerulo));
+		}
+
+		return undefined;
 	}
 }
 let myCaesarSalad = new Salad()
@@ -68,6 +83,18 @@ console.log(JSON.stringify(myCaesarSalad) + '\n');
 myCaesarSalad.remove('Gurka');
 console.log(JSON.stringify(myCaesarSalad) + '\n');
 
+Salad.prototype.getPrice = function () {
+	return Object.values(this.ingredients)
+		.map((item) => item.price || 0)
+		.reduce((total, p) => total + p, 0);
+};
+
+Salad.prototype.count = function (props) {
+	return Object.values(this.ingredients).filter(
+		(ingredient) => ingredient[props]
+	).length;
+};
+
 console.log('\n--- Assignment 3 ---------------------------------------');
 console.log('En ceasarsallad kostar ' + myCaesarSalad.getPrice() + 'kr');
 // En ceasarsallad kostar 45kr
@@ -77,30 +104,45 @@ console.log(
 		' ingredienser med laktos'
 );
 // En ceasarsallad har 2 ingredienser med laktos
+
 console.log(
 	'En ceasarsallad har ' + myCaesarSalad.count('extra') + ' tillbehör'
 );
 // En ceasarsallad har 3 tillbehör
 
-/*
-console.log('\n--- reflection question 3 ---------------------------------------')
-console.log('typeof Salad: ' + typeof Salad);
+console.log(
+	'\n--- reflection question 3 --------------------------------------- \n .prototype is a property of constructor function and returns the prototype on \n getPrototypeOf() is a method that returns an instance of an object, that is (previous?) in the object prototype chain. \n \n How do you get the next object in the prototype chain:\n getPrototypeOf()\n \n Which objects have a prototype property:	\n Constructor functions have a prototype property'
+);
+console.log('\ntypeof Salad: ' + typeof Salad);
 console.log('typeof Salad.prototype: ' + typeof Salad.prototype);
-console.log('typeof Salad.prototype.prototype: ' + typeof Salad.prototype.prototype);
+console.log(
+	'typeof Salad.prototype.prototype: ' + typeof Salad.prototype.prototype
+);
 console.log('typeof myCaesarSalad: ' + typeof myCaesarSalad);
-console.log('typeof myCaesarSalad.prototype: ' + typeof myCaesarSalad.prototype);
+console.log(
+	'typeof myCaesarSalad.prototype: ' + typeof myCaesarSalad.prototype
+);
+
 console.log('check 1: ' + (Salad.prototype === Object.getPrototypeOf(Salad)));
-console.log('check 2: ' + (Salad.prototype === Object.getPrototypeOf(myCaesarSalad)));
-console.log('check 3: ' + (Object.prototype === Object.getPrototypeOf(Salad.prototype)));
-*/
+
+console.log(
+	'check 2: ' + (Salad.prototype === Object.getPrototypeOf(myCaesarSalad))
+);
+
+console.log(
+	'check 3: ' + (Object.prototype === Object.getPrototypeOf(Salad.prototype))
+);
+
 console.log('\n--- Assignment 4 ---------------------------------------');
-/*
+
 const singleText = JSON.stringify(myCaesarSalad);
 const arrayText = JSON.stringify([myCaesarSalad, myCaesarSalad]);
 
 const objectCopy = new Salad(myCaesarSalad);
 const singleCopy = Salad.parse(singleText);
 const arrayCopy = Salad.parse(arrayText);
+console.log(arrayText);
+console.log(arrayCopy + '\n');
 
 console.log('original myCaesarSalad\n' + JSON.stringify(myCaesarSalad));
 console.log('new(myCaesarSalad)\n' + JSON.stringify(objectCopy));
@@ -110,7 +152,7 @@ console.log('Salad.parse(arrayText)\n' + JSON.stringify(arrayCopy));
 singleCopy.add('Gurka', inventory['Gurka']);
 console.log('originalet kostar ' + myCaesarSalad.getPrice() + ' kr');
 console.log('kopian med gurka kostar ' + singleCopy.getPrice() + ' kr');
-*/
+
 console.log('\n--- Assignment 5 ---------------------------------------');
 /*
 let myGourmetSalad = new GourmetSalad()

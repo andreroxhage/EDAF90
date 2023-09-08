@@ -1,11 +1,12 @@
 'use strict';
+
 /**
  * Reflection question 1
  * It's not necessary because returning non existent properties will result in 'undefined' which is falsy.
  *
  * In contrary, when using Java returning a non existent property will cause an error, NullPointerException
  *  */
-
+import {v4 as uuidv4} from 'uuid';
 import inventory from './inventory.mjs';
 console.log('\n=== beginning of printout ================================');
 console.log('inventory:', inventory);
@@ -20,6 +21,7 @@ console.log('\n--- for ... in ---------------------------------------');
 for (const name in inventory) {
 	console.log(name);
 }
+
 /**
  * Reflection question 2
  *
@@ -44,12 +46,34 @@ console.log(makeOptions(inventory, 'foundation'));
 
 console.log('\n--- Assignment 2 ---------------------------------------');
 class Salad {
+	static instanceCounter = 0;
+
 	constructor(arg) {
+		// let instanceId = 'salad_' + Salad.instanceCounter++;
+		let uuid = uuidv4(); // Generates a unique id.
+
+		/*
+		Object.defineProperty(this, 'id', {
+			value: instanceId,
+			writable: false, // Making it read only
+		});
+		*/
+
+		// Should copy existing uuid if the argument is a Salad
+		if (arg !== undefined && typeof arg === 'object' && arg.uuid) {
+			uuid = arg.uuid;
+		}
+
+		// Handles the creation of ingredients or copying
 		if (arg !== undefined) {
+			// Is used for making a new Salad by copying ingredients from another instance or string
 			this.ingredients = {...arg.ingredients};
 		} else {
 			this.ingredients = {};
 		}
+
+		this.id = 'salad_' + Salad.instanceCounter++;
+		this.uuid = uuid;
 	}
 	add(name, properties) {
 		this.ingredients[name] = properties;
@@ -71,6 +95,7 @@ class Salad {
 		return undefined;
 	}
 }
+
 let myCaesarSalad = new Salad()
 	.add('Sallad', inventory['Sallad'])
 	.add('Kycklingfilé', inventory['Kycklingfilé'])
@@ -138,7 +163,17 @@ console.log('\n--- Assignment 4 ---------------------------------------');
 const singleText = JSON.stringify(myCaesarSalad);
 const arrayText = JSON.stringify([myCaesarSalad, myCaesarSalad]);
 
-const objectCopy = new Salad(myCaesarSalad);
+let s1 = new Salad();
+console.log('s1.id: ' + s1.id + ' , s1.uuid: ' + s1.uuid);
+const objectCopy = new Salad(s1);
+
+console.log(
+	'\n (copy of myCeasarSalad).id: ' +
+		objectCopy.id +
+		' , (copy of myCeasarSalad).uuid: ' +
+		objectCopy.uuid +
+		'\n'
+);
 const singleCopy = Salad.parse(singleText);
 const arrayCopy = Salad.parse(arrayText);
 console.log(arrayText);
@@ -167,6 +202,7 @@ class GourmetSalad extends Salad {
 		return super.add(name, {...properties, size: newSize});
 	}
 
+	// Calculate the price of sallad using the size of each ingredient. handles special cases when size is undefined
 	getPrice() {
 		return Object.values(this.ingredients).reduce(
 			(totalPrice, ingredient) =>
@@ -190,17 +226,40 @@ myGourmetSalad.add('Bacon', inventory['Bacon'], 1);
 console.log('Med extra bacon kostar den ' + myGourmetSalad.getPrice() + ' kr');
 
 console.log('\n--- Assignment 6 ---------------------------------------');
-/*
+
 console.log('Min gourmetsallad har id: ' + myGourmetSalad.id);
+
+let s2 = new Salad();
+console.log('Min s2 har id: ' + s2.id);
+
 console.log('Min gourmetsallad har uuid: ' + myGourmetSalad.uuid);
-*/
+console.log('Min gourmetsallad har id: ' + myGourmetSalad.id);
 
 /**
  * Reflection question 4
+ *
+ * Static properties are stored in function objects.
+ *
+ * Static properties is shared among all instances of the class and it's associated with the class, not individual objects.
+ *
  */
 /**
  * Reflection question 5
+ *
+ * Yes! Properties can be set to read only using defineProperty()
+ * 
+ * 
+ * Object.defineProperty(this, 'id', {
+      value: instanceId,
+      writable: false, // Make it read-only
+    });
+ * 
+ *
  */
+
 /**
  * Reflection question 6
+ *
+ * Properies cannot be truly private.
+ *
  */

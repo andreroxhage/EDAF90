@@ -21,3 +21,9 @@ useEffect(() => {
 
 
 ## 3
+No, I rather keep the states at a high level or centralized in order keep track of the view-model dependency.
+
+MySaladSelect can be reused for other properties of the salad
+
+## 4
+

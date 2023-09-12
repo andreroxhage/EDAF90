@@ -1,20 +1,33 @@
 import {useEffect, useState} from 'react';
 import inventory from './inventory.mjs';
+import MySaladSelect from './MySaladSelect';
 
 function ComposeSalad(props) {
-	let extras = Object.keys(props.inventory).filter(
-		(name) => props.inventory[name].foundation
-	);
 	const [foundation, setFoundation] = useState('Pasta');
+	const [protein, setProtein] = useState('');
+	const [dressing, setDressing] = useState('');
 	const [extra, setExtra] = useState({Bacon: true, Fetaost: true});
 
-	function handleSubmit(event) {
+	useEffect(() => {
+		console.log('Foundation: ' + foundation);
+		console.log('Protein: ' + protein);
+		console.log('Tillbehör: ' + extra);
+		console.log('Dressing: ' + dressing);
+	}, [foundation, protein, dressing, extra]);
+
+	function handleSubmit(e) {
 		// 5. To-do: Handle form submission
-		event.preventDefault();
+		e.preventDefault();
 	}
 
-	function onFoundationChange(event) {
-		setFoundation(event);
+	function onFoundationChange(e) {
+		setFoundation(e.target.value);
+	}
+	function onProteinChange(e) {
+		setProtein(e.target.value);
+	}
+	function onDressingChange(e) {
+		setDressing(e.target.value);
 	}
 
 	return (
@@ -24,60 +37,45 @@ function ComposeSalad(props) {
 				<form className='my-4' onSubmit={handleSubmit}>
 					<div className='mb-4'>
 						<p>Välj bas</p>
-						<select
+						<MySaladSelect
+							id={'foundationId'}
+							options={Object.keys(props.inventory).filter(
+								(name) => props.inventory[name].foundation
+							)}
+							value={foundation}
 							onChange={onFoundationChange}
-							className='form-select'
-							aria-label='Default select example'
-						>
-							<option selected>{foundation}</option>
-
-							{Object.keys(props.inventory)
-								.filter((name) => props.inventory[name].foundation)
-								.map((name) => (
-									<option key={name} value='1'>
-										{name}
-									</option>
-								))}
-						</select>
+						/>
 					</div>
 
 					<div className='mb-4 '>
 						<p>Välj protein</p>
-						<select className='form-select' aria-label='Default select example'>
-							<option selected>Välj</option>
-
-							{Object.keys(props.inventory)
-								.filter((name) => props.inventory[name].protein)
-								.map((name) => (
-									<option key={name} value='1'>
-										{name}
-									</option>
-								))}
-						</select>
+						<MySaladSelect
+							id={'proteinId'}
+							options={Object.keys(props.inventory).filter(
+								(name) => props.inventory[name].protein
+							)}
+							value={protein}
+							onChange={onProteinChange}
+						/>
 					</div>
 
-					<div className='mb-4'>
+					{/*<div className='mb-4'>
 						<p>Välj tillbehör</p>
 
 						<input className='form-check-input' type='checkbox' value='Bacon' />
 						<label className='form-check-label'>Bacon</label>
-					</div>
+					</div>*/}
 
 					<div className='mb-4 '>
 						<p>Välj dressing</p>
-						<select
-							className='form-select'
-							aria-label='Default select example'
-							defaultValue={'Väää'}
-						>
-							{Object.keys(props.inventory)
-								.filter((name) => props.inventory[name].dressing)
-								.map((name) => (
-									<option key={name} value='1'>
-										{name}
-									</option>
-								))}
-						</select>
+						<MySaladSelect
+							id={'dressingId'}
+							options={Object.keys(props.inventory).filter(
+								(name) => props.inventory[name].dressing
+							)}
+							value={dressing}
+							onChange={onDressingChange}
+						/>
 					</div>
 
 					<button type='button' className='btn btn-primary'>

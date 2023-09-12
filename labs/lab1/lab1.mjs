@@ -46,7 +46,7 @@ console.log(makeOptions(inventory, 'foundation'));
 
 console.log('\n--- Assignment 2 ---------------------------------------');
 class Salad {
-	static instanceCounter = 0;
+	static #instanceCounter = 0;
 
 	constructor(arg) {
 		// let instanceId = 'salad_' + Salad.instanceCounter++;
@@ -60,7 +60,7 @@ class Salad {
 		*/
 
 		// Should copy existing uuid if the argument is a Salad
-		if (arg !== undefined && typeof arg === 'object' && arg.uuid) {
+		if (arg instanceof Salad) {
 			uuid = arg.uuid;
 		}
 
@@ -72,7 +72,7 @@ class Salad {
 			this.ingredients = {};
 		}
 
-		this.id = 'salad_' + Salad.instanceCounter++;
+		this.id = 'salad_' + Salad.#instanceCounter++;
 		this.uuid = uuid;
 	}
 	add(name, properties) {
@@ -260,6 +260,6 @@ console.log('Min gourmetsallad har id: ' + myGourmetSalad.id);
 /**
  * Reflection question 6
  *
- * Properies cannot be truly private.
+ * Properies can be private using #name as name convention.
  *
  */

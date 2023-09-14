@@ -6,6 +6,7 @@ import ComposeSalad from './ComposeSalad';
 
 function App() {
 	let extras = Object.keys(inventory).filter((name) => inventory[name].extra);
+
 	return (
 		<div className='container py-4'>
 			<header className='pb-3 mb-4 border-bottom'>

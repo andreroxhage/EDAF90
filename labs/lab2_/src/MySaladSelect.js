@@ -4,11 +4,10 @@ export default function MySaladSelect({id, options, value, onChange}) {
 	return (
 		<select
 			id={id}
-			onChange={onChange}
-			defaultValue={value}
-			value={value}
 			className='form-select'
+			value={value}
 			aria-label='Default select example'
+			onChange={onChange}
 		>
 			{options.map((name) => (
 				<option key={name} value={name}>

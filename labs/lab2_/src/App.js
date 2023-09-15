@@ -1,11 +1,12 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import inventory from './inventory.mjs';
+import inventory from './inventory.ES6';
 import {useState} from 'react';
 import ComposeSalad from './ComposeSalad';
+import ViewOrder from './ViewOrder';
 
 function App() {
-	let extras = Object.keys(inventory).filter((name) => inventory[name].extra);
+	const [shoppingCart, setShoppingCart] = useState([]);
 
 	return (
 		<div className='container py-4'>
@@ -13,18 +14,9 @@ function App() {
 				<span className='fs-4'>Min egen salladsbar</span>
 			</header>
 
-			<div className='continer col-12'>
-				<div className='row h-200 p-5 bg-light border rounded-3'>
-					<h2>Beställningen</h2>
-					{extras.map((name) => (
-						<div key={name} className='col-4'>
-							{name}
-						</div>
-					))}
-				</div>
-			</div>
+			<ViewOrder shoppingCart={shoppingCart} />
 
-			<ComposeSalad inventory={inventory} />
+			<ComposeSalad inventory={inventory} setShoppingCart={setShoppingCart} />
 
 			<footer className='pt-3 mt-4 text-muted border-top'>
 				EDAF90 - webprogrammering

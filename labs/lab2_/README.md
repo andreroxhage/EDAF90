@@ -38,3 +38,6 @@ What is the value of this in the event handling call-back functions?
 
 functional components are functions not objects (?)
 There's no need to use this in the event handlers since we pass a event as argument and can update states based on the events target.
+
+## 7
+When copying using ... spread syntax it will make a 'shallow' copy of the source. This includes all enuamrable properties but not the prototype chain itself. The prototype chain will not be affected.

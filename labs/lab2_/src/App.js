@@ -8,6 +8,22 @@ import ViewOrder from './ViewOrder';
 function App() {
 	const [shoppingCart, setShoppingCart] = useState([]);
 
+	/*
+	useEffect(() => {
+		fetch('rest_api_url')
+			.then((respons) => respons.json())
+			.then((data) => {
+				setInvertory(data);
+			})
+			.catch((error) => {
+				console.error('Error fetching data: ', error);
+			})
+			.finally((msg) => {
+				console.log('Fina l y' + msg);
+			});
+	}, []);
+	*/
+
 	return (
 		<div className='container py-4'>
 			<header className='pb-3 mb-4 border-bottom'>

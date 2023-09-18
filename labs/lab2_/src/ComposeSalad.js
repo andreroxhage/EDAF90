@@ -21,19 +21,6 @@ function ComposeSalad({inventory, setShoppingCart}) {
 	const [dressing, setDressing] = useState(dressings[0]);
 	const [extra, setExtra] = useState({});
 
-	/*
-	useEffect(() => {
-		fetch('rest_api_url')
-			.then((respons) => respons.json())
-			.then((data) => {
-				setInvertory(data);
-			})
-			.catch((error) => {
-				console.error('Error fetching data: ', error);
-			});
-	}, []);
-	*/
-
 	function handleSubmit(e) {
 		e.preventDefault();
 

@@ -1,10 +1,13 @@
 import {useContext, useEffect, useState} from 'react';
-import inventory from '../inventory.mjs';
 import MySaladSelect from './MySaladSelect';
 import MySaladCheckbox from './MySaladCheckbox';
 import Salad from '../salad';
+import { useOutletContext } from 'react-router-dom';
 
-function ComposeSalad({inventory, setShoppingCart}) {
+function ComposeSalad() {
+
+	const { inventory, setShoppingCart, other } = useOutletContext();
+
 	let extras = Object.keys(inventory).filter((item) => inventory[item].extra);
 	let foundations = Object.keys(inventory).filter(
 		(item) => inventory[item].foundation

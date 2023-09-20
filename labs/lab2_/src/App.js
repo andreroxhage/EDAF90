@@ -1,10 +1,11 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import inventory from './inventory.ES6';
+
 import {useState} from 'react';
-import ComposeSalad from './components/ComposeSalad';
-import ViewOrder from './components/ViewOrder';
+
 import NavBar from './components/NavBar';
+import { Outlet } from 'react-router-dom';
+import inventory from './inventory.ES6';
 
 function App() {
 	const [shoppingCart, setShoppingCart] = useState([]);
@@ -30,9 +31,8 @@ function App() {
 			<Header />
 			<NavBar />
 
-			<ViewOrder shoppingCart={shoppingCart} />
-
-			<ComposeSalad inventory={inventory} setShoppingCart={setShoppingCart} />
+			<Outlet
+				context={{ shoppingCart, setShoppingCart, inventory }} />
 
 			<footer className='pt-3 mt-4 text-muted border-top'>
 				EDAF90 - webprogrammering

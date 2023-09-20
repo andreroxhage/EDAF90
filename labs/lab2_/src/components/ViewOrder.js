@@ -1,11 +1,14 @@
 import React from 'react';
+import { useOutletContext } from 'react-router-dom';
 
-export default function ViewOrder({shoppingCart}) {
+export default function ViewOrder() {
+	const outletContext = useOutletContext();
+
 	return (
 		<div className='row h-200 p-5 bg-light border rounded-3'>
 			<h3>Varukorg</h3>
 			<div className='d-flex flex-column'>
-				{shoppingCart.map((salad) => (
+				{outletContext.shoppingCart.map((salad) => (
 					<div
 						className='column mt-2 p-3 border border-grey bg-white rounded-3'
 						key={salad.uuid}
@@ -20,11 +23,11 @@ export default function ViewOrder({shoppingCart}) {
 						<p>{salad.getPrice() + ' kr'}</p>
 					</div>
 				))}
-				{shoppingCart.length >= 1 && (
+				{outletContext.shoppingCart.length >= 1 && (
 					<div className='mt-4'>
 						<p>
 							{'Totalt pris: ' +
-								shoppingCart.reduce((prev, next) => prev + next.getPrice(), 0) +
+								outletContext.shoppingCart.reduce((prev, next) => prev + next.getPrice(), 0) +
 								' kr'}
 						</p>
 					</div>

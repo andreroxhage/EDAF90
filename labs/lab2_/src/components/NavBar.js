@@ -4,32 +4,31 @@ import {Link, NavLink} from 'react-router-dom';
 export default function NavBar() {
 	return (
 		<>
-			<NavLink className='nav-link' to='/compose-salad'>
-				Compose Salad
-			</NavLink>
 
-			<nav class='navbar navbar-expand-lg bg-body-tertiary'>
-				<div class='container-fluid'>
+			<nav className='navbar navbar-expand-lg bg-body-tertiary'>
+				<div className='container-fluid'>
 					<button
-						class='navbar-toggler'
+						className='navbar-toggler'
 						type='button'
 						data-bs-toggle='collapse'
-						data-bs-target='#n
-      avbarNavAltMarkup'
+						data-bs-target='#navbarNavAltMarkup'
 						aria-controls='navbarNavAltMarkup'
 						aria-expanded='false'
 						aria-label='Toggle navigation'
 					>
-						<span class='navbar-toggler-icon'></span>
+						<span className='navbar-toggler-icon'></span>
 					</button>
-					<div class='collapse navbar-collapse' id='navbarNavAltMarkup'>
-						<div class='navbar-nav'>
-							<a class='nav-link' href='#'>
-								Compose Salad
-							</a>
-							<a class='nav-link' href='#'>
-								Varukorg
-							</a>
+					<div className='collapse navbar-collapse' id='navbarNavAltMarkup'>
+						<div className='navbar-nav'>
+
+						<NavLink className='nav-link' to='/compose-salad'>
+							Compose Salad
+						</NavLink>
+
+						<NavLink className='nav-link' to='/view-order'>
+							View Order
+						</NavLink>
+			
 						</div>
 					</div>
 				</div>

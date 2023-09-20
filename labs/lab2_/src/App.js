@@ -31,7 +31,6 @@ function App() {
 			<NavBar />
 
 			<ViewOrder shoppingCart={shoppingCart} />
-
 			<ComposeSalad inventory={inventory} setShoppingCart={setShoppingCart} />
 
 			<footer className='pt-3 mt-4 text-muted border-top'>

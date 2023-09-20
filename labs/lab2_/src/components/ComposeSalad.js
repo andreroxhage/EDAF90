@@ -27,20 +27,20 @@ function ComposeSalad() {
 	function handleSubmit(e) {
 		e.preventDefault();
 
-		let newSalad = new Salad();
+		let newSalad;
 		let chosenExtra = Object.keys(extra).filter((i) => extra[i]); // due to:  {"Bacon":true,"Fetaost":false}
-
-		chosenExtra.forEach((ingredient) =>
-			newSalad.add(ingredient, inventory[ingredient])
-		);
 
 		e.target.classList.add('was-validated');
 
 		if (e.target.checkValidity()) {
-			newSalad
+			newSalad  = new Salad()
 				.add(foundation, inventory[foundation])
 				.add(protein, inventory[protein])
 				.add(dressing, inventory[dressing]);
+
+			chosenExtra.forEach((ingredient) =>
+			newSalad.add(ingredient, inventory[ingredient])
+		);
 
 			setShoppingCart((prevSalads) => [...prevSalads, newSalad]);
 			resetForm(e);

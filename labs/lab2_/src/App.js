@@ -2,8 +2,8 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import inventory from './inventory.ES6';
 import {useState} from 'react';
-import ComposeSalad from './ComposeSalad';
-import ViewOrder from './ViewOrder';
+import ComposeSalad from './components/ComposeSalad';
+import ViewOrder from './components/ViewOrder';
 
 function App() {
 	const [shoppingCart, setShoppingCart] = useState([]);

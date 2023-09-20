@@ -3,6 +3,7 @@ import React from 'react';
 export default function MySaladSelect({id, options, value, onChange}) {
 	return (
 		<select
+			required
 			id={id}
 			className='form-select'
 			value={value}

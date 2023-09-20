@@ -16,9 +16,9 @@ function ComposeSalad({inventory, setShoppingCart}) {
 		(item) => inventory[item].dressing
 	);
 
-	const [foundation, setFoundation] = useState(foundations[1]);
-	const [protein, setProtein] = useState(proteins[0]);
-	const [dressing, setDressing] = useState(dressings[0]);
+	const [foundation, setFoundation] = useState();
+	const [protein, setProtein] = useState('');
+	const [dressing, setDressing] = useState('');
 	const [extra, setExtra] = useState({});
 
 	function handleSubmit(e) {
@@ -30,6 +30,12 @@ function ComposeSalad({inventory, setShoppingCart}) {
 		chosenExtra.forEach((ingredient) =>
 			newSalad.add(ingredient, inventory[ingredient])
 		);
+
+		if (!foundation || !protein || !dressing) {
+			console.log('MUST CHOSE FOUNDATION; PROTEIN; DRESSING');
+		}
+
+		e.target.classList.add('was-validated');
 
 		newSalad
 			.add(foundation, inventory[foundation])
@@ -60,7 +66,7 @@ function ComposeSalad({inventory, setShoppingCart}) {
 	}
 
 	return (
-		<div className='row h-200 p-5 bg-light border rounded-3'>
+		<div className='row h-200 p-5 bg-light border rounded-3 needs-validation'>
 			<h3>Välj innehållet i din sallad</h3>
 			<form className='d-flex flex-column my-4' onSubmit={handleSubmit}>
 				<div className='mb-2'>

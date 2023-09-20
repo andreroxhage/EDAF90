@@ -31,25 +31,24 @@ function ComposeSalad({inventory, setShoppingCart}) {
 			newSalad.add(ingredient, inventory[ingredient])
 		);
 
-		if (!foundation || !protein || !dressing) {
-			console.log('MUST CHOSE FOUNDATION; PROTEIN; DRESSING');
-		}
-
 		e.target.classList.add('was-validated');
 
-		newSalad
-			.add(foundation, inventory[foundation])
-			.add(protein, inventory[protein])
-			.add(dressing, inventory[dressing]);
+		if (e.target.checkValidity()) {
+			newSalad
+				.add(foundation, inventory[foundation])
+				.add(protein, inventory[protein])
+				.add(dressing, inventory[dressing]);
 
-		setShoppingCart((prevSalads) => [...prevSalads, newSalad]);
-		resetForm();
+			setShoppingCart((prevSalads) => [...prevSalads, newSalad]);
+			resetForm(e);
+		}
 	}
-	function resetForm() {
-		setFoundation(foundations[0]);
-		setProtein(proteins[0]);
-		setDressing(dressings[0]);
+	function resetForm(e) {
+		setFoundation('');
+		setProtein('');
+		setDressing('');
 		setExtra({});
+		e.target.classList.remove('was-validated');
 	}
 
 	function onFoundationChange(e) {
@@ -66,9 +65,13 @@ function ComposeSalad({inventory, setShoppingCart}) {
 	}
 
 	return (
-		<div className='row h-200 p-5 bg-light border rounded-3 needs-validation'>
+		<div className='row h-200 p-5 bg-light border rounded-3 '>
 			<h3>Välj innehållet i din sallad</h3>
-			<form className='d-flex flex-column my-4' onSubmit={handleSubmit}>
+			<form
+				className='d-flex flex-column my-4 needs-validation'
+				onSubmit={handleSubmit}
+				noValidate
+			>
 				<div className='mb-2'>
 					<p>Välj bas</p>
 					<MySaladSelect

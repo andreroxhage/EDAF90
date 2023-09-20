@@ -8,7 +8,7 @@ export default function MySaladSelect({id, options, value, onChange}) {
 				id={id}
 				className='form-select'
 				value={value}
-				aria-label='Default select example'
+				aria-label='select example'
 				onChange={onChange}
 			>
 				<option value=''>Gör ditt val</option>
@@ -18,7 +18,7 @@ export default function MySaladSelect({id, options, value, onChange}) {
 					</option>
 				))}
 			</select>
-			<div ></div>
+			<div className='invalid-feedback'>Va fan gör du?!?</div>
 		</>
 	);
 }

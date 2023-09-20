@@ -4,6 +4,7 @@ import inventory from './inventory.ES6';
 import {useState} from 'react';
 import ComposeSalad from './components/ComposeSalad';
 import ViewOrder from './components/ViewOrder';
+import NavBar from './components/NavBar';
 
 function App() {
 	const [shoppingCart, setShoppingCart] = useState([]);
@@ -26,9 +27,8 @@ function App() {
 
 	return (
 		<div className='container py-4'>
-			<header className='pb-3 mb-4 border-bottom'>
-				<span className='fs-4'>Min egen salladsbar</span>
-			</header>
+			<Header />
+			<NavBar />
 
 			<ViewOrder shoppingCart={shoppingCart} />
 
@@ -38,6 +38,15 @@ function App() {
 				EDAF90 - webprogrammering
 			</footer>
 		</div>
+	);
+}
+
+function Header() {
+	return (
+		<header className='pb-3mb-4border-bottom'>
+			{' '}
+			<span className='fs-4'>Min egen salladsbar</span>{' '}
+		</header>
 	);
 }
 

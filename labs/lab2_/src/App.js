@@ -44,8 +44,7 @@ function App() {
 function Header() {
 	return (
 		<header className='pb-3mb-4border-bottom'>
-			{' '}
-			<span className='fs-4'>Min egen salladsbar</span>{' '}
+			<span className='fs-4'>Min egen salladsbar</span>
 		</header>
 	);
 }

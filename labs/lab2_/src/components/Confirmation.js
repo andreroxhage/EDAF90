@@ -7,11 +7,11 @@ function Confirmation() {
 	let latest = cart[cart.length -1];
 
 	return (
-		<h1>
+		<h5 className='mb-3 pb-4'>
 		
 		Snyggt jobbat, du har lagt till {latest.id} i varukorgen.
 		
-		</h1>
+		</h5>
 
 	);
 	

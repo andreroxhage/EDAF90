@@ -6,17 +6,17 @@ import { useOutletContext, useNavigate } from 'react-router-dom';
 
 function ComposeSalad() {
 
-	const { shoppingCart, setShoppingCart, inventory } = useOutletContext();
+	const { setShoppingCart, inventory } = useOutletContext();
 	const navigate = useNavigate();
 
-	let extras = Object.keys(inventory).filter((item) => inventory[item].extra);
-	let foundations = Object.keys(inventory).filter(
+	const extras = Object.keys(inventory).filter((item) => inventory[item].extra);
+	const foundations = Object.keys(inventory).filter(
 		(item) => inventory[item].foundation
 	);
-	let proteins = Object.keys(inventory).filter(
+	const proteins = Object.keys(inventory).filter(
 		(item) => inventory[item].protein
 	);
-	let dressings = Object.keys(inventory).filter(
+	const dressings = Object.keys(inventory).filter(
 		(item) => inventory[item].dressing
 	);
 
@@ -25,13 +25,13 @@ function ComposeSalad() {
 	const [dressing, setDressing] = useState('');
 	const [extra, setExtra] = useState({});
 
-	async function handleSubmit(e) {
+	function handleSubmit(e) {
 		e.preventDefault();
 
 		let newSalad;
 		let chosenExtra = Object.keys(extra).filter((i) => extra[i]); // due to:  {"Bacon":true,"Fetaost":false}
 
-		e.target.classList.add('was-validated');
+		e.target.classList.add('was-validated'); //förklara?
 
 		if (e.target.checkValidity()) {
 			newSalad  = new Salad()
@@ -43,7 +43,7 @@ function ComposeSalad() {
 			newSalad.add(ingredient, inventory[ingredient])
 		);
 
-			await setShoppingCart((prevSalads) => [...prevSalads, newSalad]);
+			setShoppingCart((prevSalads) => [...prevSalads, newSalad]);
 			resetForm(e);
 			navigate('/view-order/'+newSalad.uuid);
 		}

@@ -15,7 +15,6 @@ export default function MySaladCheckbox({id, options, value, onChange}) {
 					<div className='col-3 p-2' key={id + item}>
 						<label className='form-check-label'>
 							<input
-								id={id + item}
 								className='form-check-input'
 								type='checkbox'
 								checked={value[item] || false}

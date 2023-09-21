@@ -20,7 +20,7 @@ const router = createBrowserRouter([
 		),
 		children: [
 			{
-				path: '',
+				path: '/',
 				element: <WelcomePage />,
 			},
 			{path: 'compose-salad', element: <ComposeSalad />},
@@ -28,7 +28,8 @@ const router = createBrowserRouter([
 
 				{path: ':saladID', 
 				element: <Confirmation />}
-		],}
+		],},
+		{path: '/*', element: <ComposeSalad />},//nån grej här!!!!
 		
 		],
 	},

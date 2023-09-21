@@ -1,4 +1,5 @@
-# Reflection Quesitons
+# Lab 2
+## Reflection Quesitons
 
 ## 1 
 The render code computes the React DOM tree based on props and state.
@@ -41,3 +42,22 @@ There's no need to use this in the event handlers since we pass a event as argum
 
 ## 7
 When copying using ... spread syntax it will make a 'shallow' copy of the source. This includes all enuamrable properties but not the prototype chain itself. The prototype chain will not be affected.
+
+
+# Lab 3
+## Reflection questions
+
+## 1
+Change 
+<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+in index.html or just replace the favicon.ico file with another icon with the same filename.
+
+## 2
+NavLink is used for displaying css for a "active" link especially for 'nav-tabs' (active tab).
+
+'nav-pills' doesnt have a 'active' css condition meaning it doesnt have a styling when its active. This can be changed in the css by adding .nav-pills.active{css styles}
+
+## 3
+When clicking on a Link with '...' the url is appended on the current path. 
+
+'/' is automaticlly added to the root path.

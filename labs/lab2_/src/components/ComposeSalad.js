@@ -2,11 +2,12 @@ import {useContext, useEffect, useState} from 'react';
 import MySaladSelect from './MySaladSelect';
 import MySaladCheckbox from './MySaladCheckbox';
 import Salad from '../salad';
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useNavigate } from 'react-router-dom';
 
 function ComposeSalad() {
 
-	const { inventory, setShoppingCart, other } = useOutletContext();
+	const { shoppingCart, setShoppingCart, inventory } = useOutletContext();
+	const navigate = useNavigate();
 
 	let extras = Object.keys(inventory).filter((item) => inventory[item].extra);
 	let foundations = Object.keys(inventory).filter(
@@ -24,7 +25,7 @@ function ComposeSalad() {
 	const [dressing, setDressing] = useState('');
 	const [extra, setExtra] = useState({});
 
-	function handleSubmit(e) {
+	async function handleSubmit(e) {
 		e.preventDefault();
 
 		let newSalad;
@@ -42,8 +43,9 @@ function ComposeSalad() {
 			newSalad.add(ingredient, inventory[ingredient])
 		);
 
-			setShoppingCart((prevSalads) => [...prevSalads, newSalad]);
+			await setShoppingCart((prevSalads) => [...prevSalads, newSalad]);
 			resetForm(e);
+			navigate('/view-order/'+newSalad.uuid);
 		}
 	}
 	function resetForm(e) {

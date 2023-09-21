@@ -11,10 +11,10 @@ const router = createBrowserRouter([
 		path: '',
 		errorElement: (
 			<div className='p-2 d-flex w-50 flex-column'>
-				<h1>Oops! 404 Not Found</h1>
+				<h1>Oops! 404 Not Found, stupid</h1>
 
 				<p>
-					<NavLink to='/'>Back to Safety</NavLink>
+					<NavLink to='/'>Back to a page that actually exists</NavLink>
 				</p>
 			</div>
 		),
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
 			{path: 'compose-salad', element: <ComposeSalad />},
 			{path: 'view-order', element: <ViewOrder />, children: [
 
-				{path: 'boop', 
+				{path: ':saladID', 
 				element: <Confirmation />}
 		],}
 		

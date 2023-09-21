@@ -4,11 +4,11 @@ import { Outlet, useOutletContext } from 'react-router-dom';
 export default function ViewOrder() {
 	const outletContext = useOutletContext();
 
-	console.log(outletContext.shoppingCart); // Log the shopping cart data
-
 	return (
 		<div className='row h-200 p-5 bg-light border rounded-3'>
-			<Outlet/>
+			<Outlet
+			context={outletContext}/>
+
 			<h3>Varukorg</h3>
 
 			<div className='d-flex flex-column'>

@@ -3,7 +3,8 @@ import App from './App';
 import ComposeSalad from './components/ComposeSalad';
 import ViewOrder from './components/ViewOrder';
 import WelcomePage from './components/WelcomePage';
-import Confirmation from './components/Confirmation'
+import Confirmation from './components/Confirmation';
+import inventoryLoader from './inventoryLoader';
 
 const router = createBrowserRouter([
 	{
@@ -23,14 +24,17 @@ const router = createBrowserRouter([
 				path: '/',
 				element: <WelcomePage />,
 			},
-			{path: 'compose-salad', element: <ComposeSalad />},
-			{path: 'view-order', element: <ViewOrder />, children: [
-
-				{path: ':saladID', 
-				element: <Confirmation />}
-		],},
-		{path: '/*', element: <ComposeSalad />},//nån grej här!!!!
-		
+			{
+				path: 'compose-salad',
+				loader: inventoryLoader,
+				Component: ComposeSalad,
+			},
+			{
+				path: 'view-order',
+				element: <ViewOrder />,
+				children: [{path: ':saladID', element: <Confirmation />}],
+			},
+			{path: '/*', element: <ComposeSalad />}, //nån grej här!!!!
 		],
 	},
 ]);

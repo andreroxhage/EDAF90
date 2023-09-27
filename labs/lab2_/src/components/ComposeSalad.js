@@ -2,12 +2,15 @@ import {useContext, useEffect, useState} from 'react';
 import MySaladSelect from './MySaladSelect';
 import MySaladCheckbox from './MySaladCheckbox';
 import Salad from '../salad';
-import { useOutletContext, useNavigate } from 'react-router-dom';
+import {useOutletContext, useNavigate} from 'react-router-dom';
+import {useLoaderData} from 'react-router-dom';
 
 function ComposeSalad() {
-
-	const { setShoppingCart, inventory } = useOutletContext();
+	const {setShoppingCart} = useOutletContext();
 	const navigate = useNavigate();
+
+	const inventory = useLoaderData();
+	console.log('Fetch inventory in loader: \n' + JSON.stringify(inventory));
 
 	const extras = Object.keys(inventory).filter((item) => inventory[item].extra);
 	const foundations = Object.keys(inventory).filter(
@@ -34,18 +37,18 @@ function ComposeSalad() {
 		e.target.classList.add('was-validated'); //förklara?
 
 		if (e.target.checkValidity()) {
-			newSalad  = new Salad()
+			newSalad = new Salad()
 				.add(foundation, inventory[foundation])
 				.add(protein, inventory[protein])
 				.add(dressing, inventory[dressing]);
 
 			chosenExtra.forEach((ingredient) =>
-			newSalad.add(ingredient, inventory[ingredient])
-		);
+				newSalad.add(ingredient, inventory[ingredient])
+			);
 
 			setShoppingCart((prevSalads) => [...prevSalads, newSalad]);
 			resetForm(e);
-			navigate('/view-order/'+newSalad.uuid);
+			navigate('/view-order/' + newSalad.uuid);
 		}
 	}
 	function resetForm(e) {
@@ -124,4 +127,5 @@ function ComposeSalad() {
 		</div>
 	);
 }
+
 export default ComposeSalad;

@@ -61,3 +61,7 @@ NavLink is used for displaying css for an "active" Link especially for 'nav-tabs
 When clicking on a Link with '...url...' the url is appended on the current path. 
 
 '/' is automaticlly added to the root path.
+
+# Reflection question Lab 4
+## 1
+<BootStrapSpinner /> is an react functional component and BootStrapSpinner() is  a function that returns JSX that then will be converted into HTML

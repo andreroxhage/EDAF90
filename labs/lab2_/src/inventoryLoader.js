@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 
 export default async function InventoryLoader() {
-	//const [loading, setLoading] = useState(true);
 	let inventory = {};
 
 	Promise.all([
@@ -12,8 +12,6 @@ export default async function InventoryLoader() {
 	]).then((results) => {
 		results.forEach((result) => Object.assign(inventory, result));
 	});
-
-	console.log(inventory);
 
 	await new Promise((resolve) => setTimeout(resolve, 1000));
 	return inventory;

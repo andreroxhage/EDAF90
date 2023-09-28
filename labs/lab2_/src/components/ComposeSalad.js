@@ -10,7 +10,6 @@ function ComposeSalad() {
 	const navigate = useNavigate();
 
 	const inventory = useLoaderData();
-	console.log('Fetch inventory in loader: \n' + JSON.stringify(inventory));
 
 	const extras = Object.keys(inventory).filter((item) => inventory[item].extra);
 	const foundations = Object.keys(inventory).filter(

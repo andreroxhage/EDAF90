@@ -5,6 +5,7 @@ import ViewOrder from './components/ViewOrder';
 import WelcomePage from './components/WelcomePage';
 import Confirmation from './components/Confirmation';
 import inventoryLoader from './inventoryLoader';
+import BootStrapSpinner from './components/BootStrapSpinner';
 
 const router = createBrowserRouter([
 	{
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
 				element: <ViewOrder />,
 				children: [{path: ':saladID', element: <Confirmation />}],
 			},
-			{path: '/*', element: <ComposeSalad />}, //nån grej här!!!!
+			{path: '/*', element: <ComposeSalad />},
 		],
 	},
 ]);

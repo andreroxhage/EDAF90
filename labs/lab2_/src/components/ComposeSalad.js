@@ -6,7 +6,7 @@ import {useOutletContext, useNavigate} from 'react-router-dom';
 import {useLoaderData} from 'react-router-dom';
 
 function ComposeSalad() {
-	const {setShoppingCart} = useOutletContext();
+	const {shoppingCart, setShoppingCart} = useOutletContext();
 	const navigate = useNavigate();
 
 	const inventory = useLoaderData();
@@ -26,6 +26,21 @@ function ComposeSalad() {
 	const [protein, setProtein] = useState('');
 	const [dressing, setDressing] = useState('');
 	const [extra, setExtra] = useState({});
+
+	/*
+	useEffect(() => {
+		// Load shopping cart from localStorage when the component mounts
+		const savedShoppingCart = localStorage.getItem('shoppingCart');
+		if (savedShoppingCart) {
+			setShoppingCart(savedShoppingCart);
+		}
+	}, [setShoppingCart]);
+
+	//Function to update localStorage whenever shoppingCart changes
+	useEffect(() => {
+		localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
+	}, [shoppingCart]);
+	*/
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -50,6 +65,7 @@ function ComposeSalad() {
 			navigate('/view-order/' + newSalad.uuid);
 		}
 	}
+
 	function resetForm(e) {
 		setFoundation('');
 		setProtein('');
@@ -120,7 +136,7 @@ function ComposeSalad() {
 				</div>
 
 				<button type='submit' className='mt-4 btn btn-primary'>
-					Beställ
+					Lägg till i varukorg
 				</button>
 			</form>
 		</div>

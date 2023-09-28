@@ -6,10 +6,26 @@ import {useEffect, useState} from 'react';
 import NavBar from './components/NavBar';
 import {useNavigation, useLocation, Outlet} from 'react-router-dom';
 import BootStrapSpinner from './components/BootStrapSpinner';
+import Salad from './salad';
 
 function App() {
 	const [shoppingCart, setShoppingCart] = useState([]);
 	const navigation = useNavigation();
+
+	/*
+	useEffect(() => {
+		// Load shopping cart from localStorage when the component mounts
+		const savedShoppingCart = window.localStorage.getItem('shoppingCart');
+		if (savedShoppingCart) {
+			setShoppingCart(Salad.parse(savedShoppingCart));
+		}
+	}, [setShoppingCart]);
+
+	//Function to update localStorage whenever shoppingCart changes
+	useEffect(() => {
+		window.localStorage.setItem('shoppingCart', Salad.parse(shoppingCart));
+	}, [shoppingCart]);
+	*/
 
 	return (
 		<div className='container py-4'>

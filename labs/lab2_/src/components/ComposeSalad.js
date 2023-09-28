@@ -27,21 +27,6 @@ function ComposeSalad() {
 	const [dressing, setDressing] = useState('');
 	const [extra, setExtra] = useState({});
 
-	/*
-	useEffect(() => {
-		// Load shopping cart from localStorage when the component mounts
-		const savedShoppingCart = localStorage.getItem('shoppingCart');
-		if (savedShoppingCart) {
-			setShoppingCart(savedShoppingCart);
-		}
-	}, [setShoppingCart]);
-
-	//Function to update localStorage whenever shoppingCart changes
-	useEffect(() => {
-		localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart));
-	}, [shoppingCart]);
-	*/
-
 	function handleSubmit(e) {
 		e.preventDefault();
 

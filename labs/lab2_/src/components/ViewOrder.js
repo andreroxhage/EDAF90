@@ -1,8 +1,10 @@
-import React from 'react';
-import {Outlet, useOutletContext} from 'react-router-dom';
+import React, { useState } from 'react';
+import {Outlet, useOutletContext, useNavigate} from 'react-router-dom';
 
 export default function ViewOrder() {
 	const outletContext = useOutletContext();
+	const [resp, setResp] = useState(null);
+	const navigate = useNavigate();
 
 	function handleOrderSubmit(e) {
 		e.preventDefault();
@@ -14,7 +16,7 @@ export default function ViewOrder() {
 		let order = outletContext.shoppingCart.map((salad) =>
 			Object.keys(salad.ingredients)
 		);
-		console.log(JSON.stringify(order));
+		console.log(JSON.stringify(order.keys));
 
 		return fetch(url, {
 			method: 'POST',
@@ -25,16 +27,29 @@ export default function ViewOrder() {
 				if (!response.ok) {
 					throw new Error('Error code: ' + response.status);
 				}
-				console.log(response);
-			})
-			.then((response) => {
-				return JSON.stringify(response);
+				return response.json();})
+				
+				.then((json) => {
+					navigate('/view-order/');
+					setResp(json);
+					outletContext.setShoppingCart([]);
+				
 			});
 	}
 
 	return (
 		<div className='row h-200 p-5 bg-light border rounded-3'>
 			<Outlet context={outletContext} />
+			{resp && 
+			
+			<h5 className='mb-3 pb-4'>
+		
+				<p>Du har beställt {JSON.stringify(resp.order)}</p>
+				<p>Pris: {JSON.stringify(resp.price)}</p>
+				ID: {JSON.stringify(resp.uuid)}
+		
+			</h5>}
+
 			<h3>Varukorg</h3>
 			<div className='d-flex flex-column'>
 				{outletContext.shoppingCart.map((salad) => (

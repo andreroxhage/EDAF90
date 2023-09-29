@@ -33,7 +33,7 @@ function ComposeSalad() {
 		let newSalad;
 		let chosenExtra = Object.keys(extra).filter((i) => extra[i]); // due to:  {"Bacon":true,"Fetaost":false}
 
-		e.target.classList.add('was-validated'); //förklara?
+		e.target.classList.add('was-validated');
 
 		if (e.target.checkValidity()) {
 			newSalad = new Salad()

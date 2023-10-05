@@ -9,20 +9,25 @@ class Salad {
 
 		// Should copy existing uuid if the argument is a Salad
 		if (arg instanceof Salad) {
-			uuid = arg.uuid;
+			this.uuid = arg.uuid;
 			this.ingredients = {...arg.ingredients};
+			this.id=arg.id;
+			return this;
 		}
 
 		// Handles the creation of ingredients or copying
 		if (arg !== undefined) {
 			// Is used for making a new Salad by copying ingredients from another instance or string
 			this.ingredients = {...arg.ingredients};
+			this.uuid = arg.uuid;
+			this.id=arg.id;
+			
 		} else {
 			this.ingredients = {};
+			this.id = 'Sallad ' + Salad.#instanceCounter++;
+			this.uuid = uuidv4();
 		}
 
-		this.id = 'Sallad ' + Salad.#instanceCounter++;
-		this.uuid = uuid;
 	}
 	add(name, properties) {
 		this.ingredients[name] = properties;

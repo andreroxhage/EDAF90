@@ -4,6 +4,7 @@ import MySaladCheckbox from './MySaladCheckbox';
 import Salad from '../salad';
 import {useOutletContext, useNavigate} from 'react-router-dom';
 import {useLoaderData} from 'react-router-dom';
+import {fetchCart} from '../App.js'
 
 function ComposeSalad() {
 	const {shoppingCart, setShoppingCart} = useOutletContext();
@@ -44,8 +45,11 @@ function ComposeSalad() {
 			chosenExtra.forEach((ingredient) =>
 				newSalad.add(ingredient, inventory[ingredient])
 			);
-
-			setShoppingCart((prevSalads) => [...prevSalads, newSalad]);
+			
+			const newCart=[...shoppingCart, newSalad];
+			setShoppingCart(newCart);	
+			localStorage.setItem('cart', JSON.stringify(newCart));
+			
 			resetForm(e);
 			navigate('/view-order/' + newSalad.uuid);
 		}

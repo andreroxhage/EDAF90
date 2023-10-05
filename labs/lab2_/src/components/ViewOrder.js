@@ -29,10 +29,11 @@ export default function ViewOrder() {
 				}
 				return response.json();})
 				
-				.then((json) => {
-					navigate('/view-order/');
-					setResp(json);
-					outletContext.setShoppingCart([]);
+			.then((json) => {
+				navigate('/view-order/');
+				setResp(json);
+				outletContext.setShoppingCart([]);
+				localStorage.clear();
 				
 			});
 	}

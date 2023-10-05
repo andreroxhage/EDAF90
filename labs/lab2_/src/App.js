@@ -9,23 +9,8 @@ import BootStrapSpinner from './components/BootStrapSpinner';
 import Salad from './salad';
 
 function App() {
-	const [shoppingCart, setShoppingCart] = useState([]);
+	const [shoppingCart, setShoppingCart] = useState(fetchCart);
 	const navigation = useNavigation();
-
-	/*
-	useEffect(() => {
-		// Load shopping cart from localStorage when the component mounts
-		const savedShoppingCart = window.localStorage.getItem('shoppingCart');
-		if (savedShoppingCart) {
-			setShoppingCart(Salad.parse(savedShoppingCart));
-		}
-	}, [setShoppingCart]);
-
-	//Function to update localStorage whenever shoppingCart changes
-	useEffect(() => {
-		window.localStorage.setItem('shoppingCart', Salad.parse(shoppingCart));
-	}, [shoppingCart]);
-	*/
 
 	return (
 		<div className='container py-4'>
@@ -53,4 +38,18 @@ function Header() {
 	);
 }
 
+function fetchCart() {
+	let cart = window.localStorage.getItem('cart');
+		if(!cart){
+			return [];
+		}else{
+			cart = Salad.parse(cart);
+		}
+	return cart;
+}
+
 export default App;
+
+
+
+//'[[][][]]'
